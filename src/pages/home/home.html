@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title text-center>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content >
+  <img src="assets/imgs/resort.jpg" width=700>
+  <ion-list>
+  <p text-center>Resort App</p>
+  <ion-item>
+    <ion-label floating>Resort Name</ion-label>
+    <ion-input type="text" [(ngModel)]="name"></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label floating>Rating</ion-label>
+    <ion-input type="number" [(ngModel)]="rating"></ion-input>
+  </ion-item>
+  </ion-list>
+  <p text-center>
+  <button ion-button outline round (click)="save(name,rating)">Submit</button></p>
+</ion-content>
