@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title text-center>{{ResortName}}</ion-title>
+    <ion-title text-center>Resort Data</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,9 +15,8 @@
 
 <ion-content>
   <ion-list>
-    <img src="assets/imgs/welcome.jpg">
-    <ion-item>
-      <ion-label><p text-center>Welcome  <strong></strong></p></ion-label>
-    </ion-item>
+    <ion-item *ngFor="let d of data | async">
+      {{d.name}}
+    </ion-item>  
   </ion-list>    
 </ion-content>
