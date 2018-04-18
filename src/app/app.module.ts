@@ -9,11 +9,13 @@ import { ListPage } from '../pages/list/list';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpClientModule } from '@angular/common/http';
+import { ResortdataPage } from '../pages/resortdata/resortdata';
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    
   ],
   imports: [
     HttpClientModule,
@@ -24,7 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    
   ],
   providers: [
     StatusBar,
