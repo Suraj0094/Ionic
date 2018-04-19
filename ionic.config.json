@@ -1,6 +1,14 @@
 {
-  "name": "resort",
+ "name": "resort",
   "app_id": "283adefd",
+  
   "type": "ionic-angular",
-  "integrations": {}
+  "integrations": {},
+  
+  "proxies": [
+    {
+      "path": "/v3/businesses/search",
+      "proxyUrl": "https://api.yelp.com/v3/businesses/search"
+    }
+  ]
 }
