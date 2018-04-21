@@ -18,27 +18,32 @@ import 'rxjs/add/operator/map';
   templateUrl: 'resortdata.html',
 })
 export class ResortdataPage {
-  token:string;
-  data:Observable<any>;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public http:HttpClient) {
-    console.log("In ResortData controller")
-    this.token = 'Bearer OlHPqkMUaTVlioS3xXhYDdYVX73MGVo_x7j2zUUvjstTKt09dCjaXjLRyH6z1-NrZE2gXH5agXMcwwMY_tGEC2g5brR_12cnJ4x17Eb7g8edduGIuidFASevqcHPWnYx';
-    const headers = new HttpHeaders().set('Authorization',this.token);
-    
-}
+   yelpApiKey = 'OlHPqkMUaTVlioS3xXhYDdYVX73MGVo_x7j2zUUvjstTKt09dCjaXjLRyH6z1-NrZE2gXH5agXMcwwMY_tGEC2g5brR_12cnJ4x17Eb7g8edduGIuidFASevqcHPWnYx';
   
-  ionViewDidLoad() {
-    this.token = 'Bearer OlHPqkMUaTVlioS3xXhYDdYVX73MGVo_x7j2zUUvjstTKt09dCjaXjLRyH6z1-NrZE2gXH5agXMcwwMY_tGEC2g5brR_12cnJ4x17Eb7g8edduGIuidFASevqcHPWnYx';
-    const headers = new HttpHeaders().set('Authorization',this.token);
+  activitiesList: Array<any>;
 
+  constructor(public navCtrl: NavController, public navParams: NavParams,public http:HttpClient) { }
 
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Authorization': `Bearer ${this.yelpApiKey}`
+    })
+  };
 
-  this.http.get('https://api.yelp.com/v3/businesses/search?latitude=37.786882&longitude=-122.399972', {headers}).subscribe(
-  function(response) { console.log("Success Response" + response)},
-  function(error) { console.log("Error happened" + error)},
-  function() { console.log("the subscription is completed")}
-);
-    console.log('ionViewDidLoad ResortdataPage');
+  getActivitiesList() {
+    return this.http.get(`/businesses/search?location=westwood blvd&term=food`, this.httpOptions)
+      .map((val: any) => {
+        return val.businesses;
+      });
   }
+  
+  ionViewDidLoad(){
+    this.getActivitiesList()
+      .subscribe(data => 
+        {
+         this.activitiesList = data
+         console.log('activity',this.activitiesList)
+        });
+  };
 
 }
